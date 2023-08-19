@@ -2,14 +2,14 @@ import React from 'react';
 import Card from '../Card';
 
 interface CardListProps {
-  cards: string[];
+  numberOfCards: number;
 }
 
-const CardList: React.FC<CardListProps> = ({ cards }) => {
+const CardList: React.FC<CardListProps> = ({ numberOfCards }) => {
   return (
     <div>
-      {cards.map((content, index) => (
-        <Card key={index} content={content} />
+      {Array.from({ length: numberOfCards }, (_, index) => (
+        <Card key={index} cardIndex={index} />
       ))}
     </div>
   );
