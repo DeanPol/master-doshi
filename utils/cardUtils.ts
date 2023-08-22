@@ -1,8 +1,8 @@
 export function generateQuestionAndAnswers(numberOfChoices: number) {
-  const question = Math.floor(Math.random() * 11);
-  const possibleAnswers = generateRandomAnswers(question, numberOfChoices);
+  const correctAnswer = Math.floor(Math.random() * 11);
+  const possibleAnswers = generateRandomAnswers(correctAnswer, numberOfChoices);
 
-  return { question, possibleAnswers };
+  return { correctAnswer, possibleAnswers };
 }
 
 function generateRandomAnswers(correctAnswer: number, numberOfChoices: number) {
@@ -23,6 +23,6 @@ function generateRandomAnswers(correctAnswer: number, numberOfChoices: number) {
   return possibleAnswers;
 }
 
-export function generateQuestion() {
-  return Math.floor(Math.random() * 11);
+export function generateMessageOnClick() {
+  console.log('Button Pressed');
 }
