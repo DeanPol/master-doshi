@@ -1,34 +1,17 @@
-'use client';
-
-import React, { useState } from 'react';
-import CardList from '../components/CardList';
+import React from 'react';
 import { generateQuestionAndAnswers } from '../utils/cardUtils';
+import Card from '../components/Card';
+import CardList from '../components/CardList';
 
 const Home: React.FC = () => {
-  const { question, answers } = generateQuestionAndAnswers();
-
-  const cards = [question, ...answers];
-  const correctAnswer = answers[0];
-
-  const [isCorrectAnswerSelected, setIsCorrectAnswerSelected] = useState<
-    boolean | undefined
-  >(undefined);
-
-  const handleAnswerSelected = (isCorrect: boolean) => {
-    setIsCorrectAnswerSelected(isCorrect);
-  };
+  const { question, possibleAnswers } = generateQuestionAndAnswers(3);
 
   return (
     <div>
-      <h1>Card Application</h1>
-      <CardList
-        cards={cards}
-        correctAnswer={correctAnswer}
-        onAnswerSelected={handleAnswerSelected}
-      />
-      {isCorrectAnswerSelected !== undefined && (
-        <p>{isCorrectAnswerSelected ? 'Correct!' : 'Incorrect!'}</p>
-      )}
+      <p>This is the generated Question.</p>
+      <Card cardValue={question} />
+      <p>And these are the possible answers.</p>
+      <CardList listLength={3} cardAnswers={possibleAnswers} />
     </div>
   );
 };

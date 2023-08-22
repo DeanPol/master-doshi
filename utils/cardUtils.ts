@@ -1,23 +1,28 @@
-export function generateQuestionAndAnswers() {
-  const correctAnswer = Math.floor(Math.random() * 11);
-  const possibleAnswers = generateRandomAnswers(correctAnswer);
+export function generateQuestionAndAnswers(numberOfChoices: number) {
+  const question = Math.floor(Math.random() * 11);
+  const possibleAnswers = generateRandomAnswers(question, numberOfChoices);
 
-  const question = `What is ${correctAnswer} ?`;
-  const answers = [String(correctAnswer), ...possibleAnswers.map(String)]; // Convert numbers to strings
-
-  return { question, answers };
+  return { question, possibleAnswers };
 }
 
-function generateRandomAnswers(correctAnswer: number) {
-  const numberOfAnswers = 4;
-  const possibleAnswers = new Set<number>();
+function generateRandomAnswers(correctAnswer: number, numberOfChoices: number) {
+  const possibleAnswers = new Array<number>();
+  let hasCorrect: boolean = false;
 
-  while (possibleAnswers.size < numberOfAnswers - 1) {
-    const randomAnswer = Math.floor(Math.random() * 11);
-    if (randomAnswer !== correctAnswer) {
-      possibleAnswers.add(randomAnswer);
-    }
+  for (let i = 0; i < numberOfChoices; i++) {
+    possibleAnswers.push(Math.floor(Math.random() * 11));
+
+    if (possibleAnswers[i] === correctAnswer) hasCorrect = true;
   }
 
-  return Array.from(possibleAnswers);
+  if (!hasCorrect) {
+    possibleAnswers[Math.floor(Math.random() * numberOfChoices)] =
+      correctAnswer;
+  }
+
+  return possibleAnswers;
+}
+
+export function generateQuestion() {
+  return Math.floor(Math.random() * 11);
 }

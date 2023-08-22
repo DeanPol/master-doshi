@@ -1,28 +1,16 @@
 import React from 'react';
 import Card from '../Card';
-import styles from './styles.module.css'; // Import styles if needed
 
-interface CardListProps {
-  cards: string[];
-  correctAnswer: string; // Pass the correct answer to CardList
-  onAnswerSelected: (isCorrect: boolean) => void; // Callback function for answer selection
+interface ListContent {
+  listLength: number;
+  cardAnswers: number[];
 }
 
-const CardList: React.FC<CardListProps> = ({
-  cards,
-  correctAnswer,
-  onAnswerSelected,
-}) => {
+const CardList: React.FC<ListContent> = props => {
   return (
     <div>
-      {cards.map((content, index) => (
-        <Card
-          key={index}
-          content={content}
-          isQuestion={index === 0}
-          correctAnswer={correctAnswer}
-          onSelectAnswer={isCorrect => onAnswerSelected(isCorrect)}
-        />
+      {Array.from({ length: props.listLength }, (_, index) => (
+        <Card key={index} cardValue={props.cardAnswers[index]} />
       ))}
     </div>
   );
