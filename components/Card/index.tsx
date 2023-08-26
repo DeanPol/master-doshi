@@ -1,15 +1,22 @@
 import React from 'react';
-import { generateMessageOnClick } from '@/utils/cardUtils';
+import { checkAnswer } from '@/utils/cardUtils';
 import { CardButton } from './styles';
 
 interface CardContent {
+  isQuestion: boolean;
   cardValue: number;
+  correctAnswer: number;
+  setChoiceCorrect: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Card: React.FC<CardContent> = props => {
-  return (
-    <CardButton onClick={generateMessageOnClick}>{props.cardValue}</CardButton>
-  );
+  const handleCardClick = () => {
+    if (!props.isQuestion) {
+      const isCorrect = checkAnswer(props.correctAnswer, props.cardValue);
+      props.setChoiceCorrect(isCorrect);
+    }
+  };
+  return <CardButton onClick={handleCardClick}>{props.cardValue}</CardButton>;
 };
 
 export default Card;

@@ -26,3 +26,10 @@ function generateRandomAnswers(correctAnswer: number, numberOfChoices: number) {
 export function generateMessageOnClick() {
   console.log('Button Pressed');
 }
+
+export function checkAnswer(
+  correctAnswer: number,
+  selectedAnswer: number,
+): boolean {
+  return correctAnswer === selectedAnswer;
+}
