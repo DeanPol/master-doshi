@@ -23,10 +23,6 @@ function generateRandomAnswers(correctAnswer: number, numberOfChoices: number) {
   return possibleAnswers;
 }
 
-export function generateMessageOnClick() {
-  console.log('Button Pressed');
-}
-
 export function checkAnswer(
   correctAnswer: number,
   selectedAnswer: number,

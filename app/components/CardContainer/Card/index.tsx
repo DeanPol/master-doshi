@@ -6,7 +6,7 @@ interface CardContent {
   isQuestion: boolean;
   cardValue: number;
   correctAnswer: number;
-  setChoiceCorrect: React.Dispatch<React.SetStateAction<boolean>>;
+  setChoiceCorrect: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
 const Card: React.FC<CardContent> = props => {
