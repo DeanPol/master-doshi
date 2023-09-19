@@ -29,3 +29,12 @@ Updated hierarchy of components
 - Created an InteractiveSection component.
 - Correctly passing props and declaring interfaces for each component.
 - Separated server-side and client-side components.
+
+### 0.0.5
+
+Database creation and connection
+
+- Installed prisma and prisma-related packages.
+- Initialized database details and created Verb model.
+- Generated prisma schema and added global prisma client.
+- Installed ts-node for database seeding and created sample data for display.

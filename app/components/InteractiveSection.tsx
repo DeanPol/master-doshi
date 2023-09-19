@@ -1,6 +1,5 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Button } from '@mui/material';
 import { generateQuestionAndAnswers } from '@/utils/cardUtils';
 import CardContent from './CardContainer'; // Assuming the CardContent component is in the same directory
 
@@ -23,14 +22,11 @@ const InteractiveSection: React.FC = () => {
   };
 
   return (
-    <>
-      <CardContent
-        correctAnswer={correctAnswer}
-        possibleAnswers={possibleAnswers}
-        updateQuestionAndAnswers={updateQuestionAndAnswers} // Pass the callback function
-      />
-      <Button onClick={updateQuestionAndAnswers}>Regenerate Values</Button>
-    </>
+    <CardContent
+      correctAnswer={correctAnswer}
+      possibleAnswers={possibleAnswers}
+      updateQuestionAndAnswers={updateQuestionAndAnswers} // Pass the callback function
+    />
   );
 };
 

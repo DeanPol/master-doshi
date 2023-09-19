@@ -2,5 +2,5 @@
 import { styled } from '@mui/material';
 
 export const FooterStyled = styled('div')`
-  background-color: #ffab40;
+  background-color: #f1f1f1;
 `;
