@@ -24,8 +24,8 @@ function generateRandomAnswers(correctAnswer: number, numberOfChoices: number) {
 }
 
 export function checkAnswer(
-  correctAnswer: number,
-  selectedAnswer: number,
+  correctAnswer: string,
+  selectedAnswer: string,
 ): boolean {
   return correctAnswer === selectedAnswer;
 }

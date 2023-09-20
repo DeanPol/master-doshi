@@ -4,8 +4,8 @@ import { CardButton } from './styles';
 
 interface CardContent {
   isQuestion: boolean;
-  cardValue: number;
-  correctAnswer: number;
+  cardValue: string;
+  correctAnswer: string;
   setChoiceCorrect: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 

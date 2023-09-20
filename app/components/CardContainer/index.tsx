@@ -6,8 +6,12 @@ import Card from './Card';
 import { CardContainer, ContainerText } from './styles';
 
 interface ContainerContent {
-  correctAnswer: number;
-  possibleAnswers: number[];
+  correctAnswer: {
+    id: string;
+    japanese: string;
+    english: string;
+  };
+  possibleAnswers: string[];
   updateQuestionAndAnswers: () => void; // Define the prop for the callback function
 }
 
@@ -24,8 +28,8 @@ const CardContent: React.FC<ContainerContent> = props => {
       <ContainerText>This is the question.</ContainerText>
       <Card
         isQuestion={true}
-        cardValue={props.correctAnswer}
-        correctAnswer={props.correctAnswer}
+        cardValue={props.correctAnswer.japanese}
+        correctAnswer={props.correctAnswer.english}
         setChoiceCorrect={setChoiceCorrect}
       />
       <ContainerText>And these are the possible answers.</ContainerText>
@@ -33,7 +37,7 @@ const CardContent: React.FC<ContainerContent> = props => {
         <Card
           key={index}
           isQuestion={false}
-          correctAnswer={props.correctAnswer}
+          correctAnswer={props.correctAnswer.english}
           cardValue={props.possibleAnswers[index]}
           setChoiceCorrect={setChoiceCorrect}
         />
@@ -41,9 +45,9 @@ const CardContent: React.FC<ContainerContent> = props => {
       {isChoiceCorrect !== null && (
         <>
           <p>{isChoiceCorrect ? '正しい!' : '違う'}</p>
-          <Button onClick={handleNextQuestion}>Next question</Button>
         </>
       )}
+      <Button onClick={handleNextQuestion}>Next question</Button>
     </CardContainer>
   );
 };

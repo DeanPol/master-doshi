@@ -38,3 +38,12 @@ Database creation and connection
 - Initialized database details and created Verb model.
 - Generated prisma schema and added global prisma client.
 - Installed ts-node for database seeding and created sample data for display.
+
+### 0.0.6
+
+Database model representation.
+
+- Records from database fetched using async methods.
+- Passing fetched props from Server-Side components to Client-Side.
+- Using shuffling and filtering methods to correctly display unique values for
+  the quiz.
