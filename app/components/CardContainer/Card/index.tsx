@@ -1,6 +1,8 @@
 import React from 'react';
 import { checkAnswer } from '@/utils/cardUtils';
-import { CardButton } from './styles';
+import { useDispatch } from 'react-redux';
+import { increment } from '@/store/slice';
+import { ListItem, ListItemButton, Typography } from '@mui/material';
 
 interface CardContent {
   isQuestion: boolean;
@@ -10,13 +12,29 @@ interface CardContent {
 }
 
 const Card: React.FC<CardContent> = props => {
+  const dispatch = useDispatch();
   const handleCardClick = () => {
     if (!props.isQuestion) {
       const isCorrect = checkAnswer(props.correctAnswer, props.cardValue);
+      if (isCorrect) {
+        dispatch(increment());
+      }
       props.setChoiceCorrect(isCorrect);
     }
   };
-  return <CardButton onClick={handleCardClick}>{props.cardValue}</CardButton>;
+  return (
+    <>
+      {!props.isQuestion ? (
+        <ListItem>
+          <ListItemButton onClick={handleCardClick}>
+            {props.cardValue}
+          </ListItemButton>
+        </ListItem>
+      ) : (
+        <Typography>{props.cardValue}</Typography>
+      )}
+    </>
+  );
 };
 
 export default Card;

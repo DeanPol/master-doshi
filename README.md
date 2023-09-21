@@ -16,7 +16,7 @@ Created basic Page Layout
 
 ### 0.0.3
 
-Created a basic layout of components
+Created a basic layout of components.
 
 - Created Card component.
 - Created CardContainer component.
@@ -24,7 +24,7 @@ Created a basic layout of components
 
 ### 0.0.4
 
-Updated hierarchy of components
+Updated hierarchy of components.
 
 - Created an InteractiveSection component.
 - Correctly passing props and declaring interfaces for each component.
@@ -32,7 +32,7 @@ Updated hierarchy of components
 
 ### 0.0.5
 
-Database creation and connection
+Database creation and connection.
 
 - Installed prisma and prisma-related packages.
 - Initialized database details and created Verb model.
@@ -47,3 +47,12 @@ Database model representation.
 - Passing fetched props from Server-Side components to Client-Side.
 - Using shuffling and filtering methods to correctly display unique values for
   the quiz.
+
+### 0.0.7
+
+State management.
+
+- Added an end condition to the quiz.
+- Created the questions and correct answer props.
+- Added a new end results splash component to display the above props.
+- Installed redux to handle their states.

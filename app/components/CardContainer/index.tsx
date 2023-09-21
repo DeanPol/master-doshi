@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Button } from '@mui/material';
+import { Button, List, Divider } from '@mui/material';
 import Card from './Card';
 
 import { CardContainer, ContainerText } from './styles';
@@ -25,29 +25,36 @@ const CardContent: React.FC<ContainerContent> = props => {
 
   return (
     <CardContainer maxWidth='sm'>
-      <ContainerText>This is the question.</ContainerText>
-      <Card
-        isQuestion={true}
-        cardValue={props.correctAnswer.japanese}
-        correctAnswer={props.correctAnswer.english}
-        setChoiceCorrect={setChoiceCorrect}
-      />
-      <ContainerText>And these are the possible answers.</ContainerText>
-      {Array.from({ length: props.possibleAnswers.length }, (_, index) => (
+      <ContainerText>
+        Select the correct translation for this verb :
+      </ContainerText>
+      <List component='nav' aria-label='mailbox folders'>
         <Card
-          key={index}
-          isQuestion={false}
+          isQuestion={true}
+          cardValue={props.correctAnswer.japanese}
           correctAnswer={props.correctAnswer.english}
-          cardValue={props.possibleAnswers[index]}
           setChoiceCorrect={setChoiceCorrect}
         />
-      ))}
+        <Divider />
+        {Array.from({ length: props.possibleAnswers.length }, (_, index) => (
+          <>
+            <Card
+              key={index}
+              isQuestion={false}
+              correctAnswer={props.correctAnswer.english}
+              cardValue={props.possibleAnswers[index]}
+              setChoiceCorrect={setChoiceCorrect}
+            />
+            <Divider />
+          </>
+        ))}
+      </List>
       {isChoiceCorrect !== null && (
         <>
           <p>{isChoiceCorrect ? '正しい!' : '違う'}</p>
+          <Button onClick={handleNextQuestion}>Next question</Button>
         </>
       )}
-      <Button onClick={handleNextQuestion}>Next question</Button>
     </CardContainer>
   );
 };
