@@ -3,7 +3,7 @@ import React from 'react';
 import type { RootState } from '@/store/store';
 import { checkAnswer } from '@/utils/cardUtils';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, update } from '@/store/cardSlice';
+import { increment, updateSelection } from '@/store/cardSlice';
 import { ListItem, Typography } from '@mui/material';
 
 import { CardButton } from './styles';
@@ -12,8 +12,7 @@ interface CardContent {
   isQuestion: boolean;
   cardValue: string;
   correctAnswer: string;
-  setChoiceSelected?: React.Dispatch<React.SetStateAction<boolean>>;
-  setChoiceCorrect: React.Dispatch<React.SetStateAction<boolean | null>>;
+  setChoiceCorrect?: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
 const Card: React.FC<CardContent> = props => {
@@ -23,15 +22,14 @@ const Card: React.FC<CardContent> = props => {
   const dispatch = useDispatch();
   const handleCardClick = () => {
     if (!props.isQuestion) {
-      dispatch(update());
+      dispatch(updateSelection());
       const isCorrect = checkAnswer(props.correctAnswer, props.cardValue);
       if (isCorrect) {
         dispatch(increment());
       }
-      if (props.setChoiceSelected) {
-        props.setChoiceSelected(true);
+      if (props.setChoiceCorrect) {
+        props.setChoiceCorrect(isCorrect);
       }
-      props.setChoiceCorrect(isCorrect);
     }
   };
   return (

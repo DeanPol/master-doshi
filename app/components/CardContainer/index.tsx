@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { update } from '@/store/cardSlice';
+import { updateSelection } from '@/store/cardSlice';
 import { Button, List, Divider } from '@mui/material';
 import Card from './Card';
 
@@ -14,6 +14,7 @@ interface ContainerContent {
     english: string;
   };
   possibleAnswers: string[];
+  nextMessage: string;
   updateQuestionAndAnswers: () => void; // Define the prop for the callback function
 }
 
@@ -22,7 +23,7 @@ const CardContent: React.FC<ContainerContent> = props => {
   const dispatch = useDispatch();
 
   const handleNextQuestion = () => {
-    dispatch(update());
+    dispatch(updateSelection());
     setChoiceCorrect(null);
 
     props.updateQuestionAndAnswers(); // Call the callback function to regenerate values
@@ -33,31 +34,30 @@ const CardContent: React.FC<ContainerContent> = props => {
       <ContainerText>
         Select the correct translation for this verb :
       </ContainerText>
-      <List component='nav' aria-label='mailbox folders'>
+      <List component='nav'>
         <Card
           isQuestion={true}
           cardValue={props.correctAnswer.japanese}
           correctAnswer={props.correctAnswer.english}
-          setChoiceCorrect={setChoiceCorrect}
         />
         <Divider />
-        {Array.from({ length: props.possibleAnswers.length }, (_, index) => (
-          <>
+        {props.possibleAnswers.map((answer, index) => (
+          <React.Fragment key={index}>
             <Card
               key={index}
               isQuestion={false}
               correctAnswer={props.correctAnswer.english}
-              cardValue={props.possibleAnswers[index]}
+              cardValue={answer}
               setChoiceCorrect={setChoiceCorrect}
             />
             <Divider />
-          </>
+          </React.Fragment>
         ))}
       </List>
       {isChoiceCorrect !== null && (
         <>
-          <p>{isChoiceCorrect ? '正しい!' : '違う'}</p>
-          <Button onClick={handleNextQuestion}>Next question</Button>
+          <p>{isChoiceCorrect ? '正しい!' : '違う!'}</p>
+          <Button onClick={handleNextQuestion}>{props.nextMessage}</Button>
         </>
       )}
     </CardContainer>

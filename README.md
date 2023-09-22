@@ -63,3 +63,19 @@ Added new cardSlice functions.
 
 - Forcing only one option to be selected.
 - General tree shaking.
+
+### 0.0.9
+
+Optimizations.
+
+- Corrected the question selection process.
+- Fixed bug in which answer would always be the first option.
+- Showing appropriate messages before each question or results.
+
+### 1.0.0
+
+Reset status and completion of first draft.
+
+- Added a hook to reset states and return to initial state.
+- Reducing total project size.
+- Correct bundling for easy installation and execution.
