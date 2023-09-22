@@ -15,8 +15,9 @@ const Results: React.FC<ResultsProps> = props => {
   const correctAnswerCount = useSelector(
     (state: RootState) => state.counter.correctAnswerCounter,
   );
-  const resultsVal: number =
-    (correctAnswerCount / props.numberOfQuestions) * 100;
+  const resultsVal: number = Math.round(
+    (correctAnswerCount / props.numberOfQuestions) * 100,
+  );
   let resultsMessage: string = '';
 
   if (resultsVal == 100) {
