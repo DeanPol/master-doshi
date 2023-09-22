@@ -1,12 +1,14 @@
 # Master Doshi
 
-## A Next JS + Redux + Prisma application focused on testing one's abilities on the japanese N5 verbs. Enjoy!
+## A Next JS + Redux + Prisma application focused on testing one's abilities on the japanese N5 verbs.
 
 ## Initializing project
 
 - Run 'npm install' to install all neccessary packages.
 - Run 'npm run dev' and navigate to localhost:3000 (or whichever port is
   available).
+
+## Changelog
 
 ### 0.0.1
 
