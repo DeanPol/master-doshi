@@ -9,7 +9,7 @@ interface ResultsContainerProps {
 
 const ResultsContainer: React.FC<ResultsContainerProps> = props => {
   const correctAnswerCount = useSelector(
-    (state: RootState) => state.counter.value,
+    (state: RootState) => state.counter.correctAnswerCounter,
   );
   return (
     <Container>

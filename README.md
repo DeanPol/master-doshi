@@ -56,3 +56,10 @@ State management.
 - Created the questions and correct answer props.
 - Added a new end results splash component to display the above props.
 - Installed redux to handle their states.
+
+### 0.0.8
+
+Added new cardSlice functions.
+
+- Forcing only one option to be selected.
+- General tree shaking.

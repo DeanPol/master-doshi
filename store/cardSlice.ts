@@ -1,14 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface CounterState {
-  value: number;
+  correctAnswerCounter: number;
+  hasSelected: boolean;
 }
 
 const initialState: CounterState = {
-  value: 0,
+  correctAnswerCounter: 0,
+  hasSelected: false,
 };
 
-export const counterSlice = createSlice({
+export const cardSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
@@ -17,12 +19,15 @@ export const counterSlice = createSlice({
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
-      state.value += 1;
+      state.correctAnswerCounter += 1;
+    },
+    update: state => {
+      state.hasSelected = !state.hasSelected;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { increment } = counterSlice.actions;
+export const { increment, update } = cardSlice.actions;
 
-export default counterSlice.reducer;
+export default cardSlice.reducer;

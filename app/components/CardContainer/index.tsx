@@ -1,5 +1,7 @@
 'use client';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { update } from '@/store/cardSlice';
 import { Button, List, Divider } from '@mui/material';
 import Card from './Card';
 
@@ -17,9 +19,12 @@ interface ContainerContent {
 
 const CardContent: React.FC<ContainerContent> = props => {
   const [isChoiceCorrect, setChoiceCorrect] = useState<boolean | null>(null);
+  const dispatch = useDispatch();
 
   const handleNextQuestion = () => {
+    dispatch(update());
     setChoiceCorrect(null);
+
     props.updateQuestionAndAnswers(); // Call the callback function to regenerate values
   };
 

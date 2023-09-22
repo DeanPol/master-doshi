@@ -1,5 +1,5 @@
 import React from 'react';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/utils/prisma';
 import InteractiveSection from './components/InteractiveSection';
 
 export default async function Home() {
