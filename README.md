@@ -99,3 +99,11 @@ Updated database. Created ProgressBar component.
 - Added more verbs in the database Verb model.
 - Removed unused packages.
 - Added installation steps to this file.
+
+### 1.0.2
+
+Added Start Over and End Quiz controls.
+
+- Created and passed more callback functions to handle end game and reset hooks.
+- Removed some unused code/imports.
+- Added more comments.
