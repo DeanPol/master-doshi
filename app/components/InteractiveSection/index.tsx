@@ -1,7 +1,9 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import CardContent from './CardContainer';
-import Results from './Results';
+import { useDispatch } from 'react-redux';
+import { resetCounter, updateSelection } from '@/store/cardSlice';
+import CardContent from '../CardContainer';
+import Results from '../Results';
 
 interface Verb {
   id: string;
@@ -26,6 +28,8 @@ const InteractiveSection: React.FC<IncomingVerbs> = ({ verbs }) => {
   const [nextMessage, setNextMessage] = useState<string>('');
 
   const [resultsScreen, setResultsScreen] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchQuestionAndAnswers();
@@ -68,6 +72,18 @@ const InteractiveSection: React.FC<IncomingVerbs> = ({ verbs }) => {
     setNumberOfQuestions(numberOfQuestions => numberOfQuestions + 1);
   };
 
+  const handleStartOver = () => {
+    // Reset counters and verb collection.
+    dispatch(resetCounter());
+    dispatch(updateSelection());
+    setNumberOfQuestions(0);
+    if (resultsScreen) {
+      setResultsScreen(false);
+    }
+    setAllVerbs(verbs);
+    fetchQuestionAndAnswers();
+  };
+
   return (
     <>
       {!resultsScreen ? (
@@ -75,10 +91,16 @@ const InteractiveSection: React.FC<IncomingVerbs> = ({ verbs }) => {
           correctAnswer={correctAnswer}
           possibleAnswers={possibleAnswers}
           nextMessage={nextMessage}
-          updateQuestionAndAnswers={fetchQuestionAndAnswers} // Pass the callback function.
+          isResultsScreen={() => setResultsScreen(true)} // Callback to handle 'End Quiz' selection.
+          updateQuestionAndAnswers={fetchQuestionAndAnswers} // Callback to handle next question.
         />
       ) : (
-        <Results numberOfQuestions={numberOfQuestions} />
+        <>
+          <Results
+            numberOfQuestions={numberOfQuestions}
+            setStartOver={() => handleStartOver()}
+          />
+        </>
       )}
     </>
   );

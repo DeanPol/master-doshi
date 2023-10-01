@@ -3,12 +3,13 @@ import React from 'react';
 import type { RootState } from '@/store/store';
 import { useSelector } from 'react-redux';
 
-import { Box, LinearProgress, Typography } from '@mui/material';
+import { Box, LinearProgress, Typography, Button } from '@mui/material';
 
 import { ResultsContainer } from './styles.js';
 
 interface ResultsProps {
   numberOfQuestions: number;
+  setStartOver: () => void;
 }
 
 const Results: React.FC<ResultsProps> = props => {
@@ -48,6 +49,7 @@ const Results: React.FC<ResultsProps> = props => {
           </Box>
         </Box>
         <Typography>{resultsMessage}</Typography>
+        <Button onClick={() => props.setStartOver()}>Start Over</Button>
       </ResultsContainer>
     </>
   );
