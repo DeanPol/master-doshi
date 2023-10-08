@@ -107,3 +107,9 @@ Added Start Over and End Quiz controls.
 - Created and passed more callback functions to handle end game and reset hooks.
 - Removed some unused code/imports.
 - Added more comments.
+
+### 1.0.3
+
+Database bugfix.
+
+- Removed unnecessary initial verb creation.

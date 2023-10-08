@@ -2,16 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-async function main() {
-  const verb = await prisma.verb.create({
-    data: {
-      japanese: 'taberu',
-      english: 'to eat',
-    },
-  });
-
-  console.log({ verb });
-}
+async function main() {}
 
 main()
   .then(() => prisma.$disconnect())
